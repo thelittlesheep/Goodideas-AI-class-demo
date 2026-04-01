@@ -1,0 +1,16 @@
+{
+  "name": "week1-demo",
+  "version": "1.0.0",
+  "description": "Claude Code Week 1 Demo — Users CRUD API",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test test/**/*.test.js"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "dependencies": {
+    "express": "^5.2.1",
+    "supertest": "^7.2.2"
+  }
+}
