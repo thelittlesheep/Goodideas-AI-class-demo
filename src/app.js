@@ -4,9 +4,34 @@ const { getAll, getById, create, update, remove } = require("./data");
 const app = express();
 app.use(express.json());
 
-// GET /users — return all users (no pagination)
+// GET /users — list users with optional pagination (?page=1&limit=10)
 app.get("/users", (req, res) => {
-  res.json(getAll());
+  const { page, limit } = req.query;
+
+  // No pagination params → return all (backward compatible)
+  if (page === undefined && limit === undefined) {
+    return res.json(getAll());
+  }
+
+  const pageNum = Number(page);
+  const limitNum = Number(limit);
+
+  if (!Number.isInteger(pageNum) || pageNum < 1) {
+    return res
+      .status(400)
+      .json({ error: "page must be a positive integer" });
+  }
+  if (!Number.isInteger(limitNum) || limitNum < 1 || limitNum > 100) {
+    return res
+      .status(400)
+      .json({ error: "limit must be an integer between 1 and 100" });
+  }
+
+  const all = getAll();
+  const start = (pageNum - 1) * limitNum;
+  const data = all.slice(start, start + limitNum);
+
+  res.json({ data, total: all.length, page: pageNum, limit: limitNum });
 });
 
 // GET /users/:id

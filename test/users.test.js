@@ -7,11 +7,81 @@ const { resetData } = require("../src/data");
 describe("GET /users", () => {
   beforeEach(() => resetData());
 
-  it("returns all users as an array", async () => {
+  it("returns all users as an array when no pagination params", async () => {
     const res = await request(app).get("/users");
     assert.equal(res.status, 200);
     assert.ok(Array.isArray(res.body));
     assert.ok(res.body.length >= 15);
+  });
+
+  it("returns paginated results with total count", async () => {
+    const res = await request(app).get("/users?page=1&limit=5");
+    assert.equal(res.status, 200);
+    assert.equal(res.body.data.length, 5);
+    assert.equal(res.body.total, 18);
+    assert.equal(res.body.page, 1);
+    assert.equal(res.body.limit, 5);
+  });
+
+  it("returns correct second page", async () => {
+    const res = await request(app).get("/users?page=2&limit=5");
+    assert.equal(res.status, 200);
+    assert.equal(res.body.data.length, 5);
+    assert.equal(res.body.data[0].id, 6);
+  });
+
+  it("returns partial results on last page", async () => {
+    const res = await request(app).get("/users?page=4&limit=5");
+    assert.equal(res.status, 200);
+    assert.equal(res.body.data.length, 3);
+    assert.equal(res.body.total, 18);
+  });
+
+  it("returns empty array when page exceeds total", async () => {
+    const res = await request(app).get("/users?page=100&limit=5");
+    assert.equal(res.status, 200);
+    assert.equal(res.body.data.length, 0);
+    assert.equal(res.body.total, 18);
+  });
+
+  it("returns 400 for invalid page", async () => {
+    const res = await request(app).get("/users?page=0&limit=5");
+    assert.equal(res.status, 400);
+  });
+
+  it("returns 400 for negative page", async () => {
+    const res = await request(app).get("/users?page=-1&limit=5");
+    assert.equal(res.status, 400);
+  });
+
+  it("returns 400 for non-numeric page", async () => {
+    const res = await request(app).get("/users?page=abc&limit=5");
+    assert.equal(res.status, 400);
+  });
+
+  it("returns 400 for limit exceeding 100", async () => {
+    const res = await request(app).get("/users?page=1&limit=101");
+    assert.equal(res.status, 400);
+  });
+
+  it("returns 400 for limit of 0", async () => {
+    const res = await request(app).get("/users?page=1&limit=0");
+    assert.equal(res.status, 400);
+  });
+
+  it("returns 400 for non-numeric limit", async () => {
+    const res = await request(app).get("/users?page=1&limit=abc");
+    assert.equal(res.status, 400);
+  });
+
+  it("returns 400 when only page is provided", async () => {
+    const res = await request(app).get("/users?page=1");
+    assert.equal(res.status, 400);
+  });
+
+  it("returns 400 when only limit is provided", async () => {
+    const res = await request(app).get("/users?limit=5");
+    assert.equal(res.status, 400);
   });
 });
 
