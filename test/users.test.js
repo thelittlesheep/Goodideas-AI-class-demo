@@ -101,6 +101,21 @@ describe("GET /users/:id", () => {
   });
 });
 
+describe("GET /users/:id/role", () => {
+  beforeEach(() => resetData());
+
+  it("returns the role of an existing user", async () => {
+    const res = await request(app).get("/users/1/role");
+    assert.equal(res.status, 200);
+    assert.equal(res.body.role, "admin");
+  });
+
+  it("returns 404 for non-existent user", async () => {
+    const res = await request(app).get("/users/9999/role");
+    assert.equal(res.status, 404);
+  });
+});
+
 describe("POST /users", () => {
   beforeEach(() => resetData());
 

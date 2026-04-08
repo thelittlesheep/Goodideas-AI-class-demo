@@ -17,9 +17,20 @@ npm start
 |------|------|------|
 | GET | /users | 列出所有使用者 |
 | GET | /users/:id | 依 ID 取得使用者 |
+| GET | /users/:id/role | 取得使用者角色 |
 | POST | /users | 建立使用者 |
 | PUT | /users/:id | 更新使用者 |
 | DELETE | /users/:id | 刪除使用者 |
+
+### Memberships
+
+| 方法 | 路徑 | 說明 |
+|------|------|------|
+| GET | /memberships | 列出所有會員方案 |
+| GET | /memberships/:id | 依 ID 取得會員方案 |
+| POST | /memberships | 建立會員方案 |
+| PUT | /memberships/:id | 更新會員方案 |
+| DELETE | /memberships/:id | 刪除會員方案 |
 
 ### 範例
 
@@ -69,3 +80,7 @@ npm test
 |------|------|------|
 | `/add-endpoint` | 新增 API endpoint | `/add-endpoint GET /users/:id/role — 只回傳 role 欄位` |
 | `/validate-input` | 為路由加上 input validation | `/validate-input POST /users` |
+| `/add-filter` | 為列表端點加上查詢參數過濾 | `/add-filter GET /users — 依 role 過濾` |
+| `/debug-test` | 結構化診斷並修復失敗測試 | `/debug-test GET /users 分頁測試失敗` |
+| `/add-model` | 新增完整資料模型 | `/add-model Membership — userId, plan, status` |
+| `/bootstrap-repo` | 掃描整個 repo 產生概覽 | `/bootstrap-repo` |
