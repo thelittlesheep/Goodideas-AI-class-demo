@@ -62,3 +62,10 @@ curl -s -X DELETE http://localhost:3000/users/1 -w "%{http_code}\n"
 ```bash
 npm test
 ```
+
+## Claude Code Custom Commands
+
+| 指令 | 說明 | 範例 |
+|------|------|------|
+| `/add-endpoint` | 新增 API endpoint | `/add-endpoint GET /users/:id/role — 只回傳 role 欄位` |
+| `/validate-input` | 為路由加上 input validation | `/validate-input POST /users` |

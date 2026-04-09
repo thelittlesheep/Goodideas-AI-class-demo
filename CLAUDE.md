@@ -6,14 +6,15 @@
 - 測試：node:test + supertest
 
 ## 專案結構
-- src/app.js — Express 應用程式，包含所有路由
-- src/data.js — 記憶體內使用者資料與 CRUD 輔助函式
-- src/server.js — 伺服器入口（port 3000）
-- test/ — 使用 node:test 的測試
+- src/app.js — Express app + 所有路由（路由與 app 綁在一起）
+- src/data.js — 記憶體 CRUD（重啟後資料消失）
+- src/server.js — 入口，僅負責 listen port 3000
+- test/ — 測試（supertest 直接打 app，不啟動 server）
 
 ## 驗證方式
-- 測試：npm test
-- 啟動伺服器：npm start（在 port 3000 執行）
+- npm test（每次改完都要跑）
+- 新增 API endpoint 後 → 必須新增對應測試
+- 修改 data.js 的資料結構 → 確認所有 endpoint 仍正確
 
 ## API 端點
 - GET /users — 列出所有使用者
@@ -22,6 +23,12 @@
 - PUT /users/:id — 更新使用者
 - DELETE /users/:id — 刪除使用者
 
-## 規則
-- 保持簡單 — 這是教學示範用專案
-- 所有變更都必須通過測試
+## 慣例
+- IMPORTANT: 保持簡單，這是教學示範用專案
+- 不要引入資料庫或 ORM
+- Commit: conventional commits（feat:, fix:, chore:）
+
+## 已知地雷
+- data.js 是記憶體儲存，重啟後資料會消失
+- app.js 的路由沒有 input validation
+- test 直接 import app.js，不要啟動 server
