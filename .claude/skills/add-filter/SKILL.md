@@ -1,3 +1,9 @@
+---
+name: add-filter
+description: >
+  Add query parameter filtering to an existing list endpoint in this Express Users API.
+---
+
 Add query parameter filtering to an existing list endpoint in this Express Users API.
 
 Context:
@@ -13,5 +19,6 @@ Steps:
 4. IMPLEMENT: add `.filter()` on the array from `getAll()` before any pagination slicing. Destructure new query params alongside existing ones at the top of the handler
 5. TEST: Add a describe block in test/users.test.js with beforeEach(() => resetData()) — cover: filter returns matching results, no matches returns [], filter combined with pagination, no filter param returns all results unchanged
 6. VERIFY: Run npm test — all tests must pass
+7. VALIDATE: Run `bash .claude/skills/add-filter/evals/verify.sh` to confirm all constraints are met
 
 Filter to add: $ARGUMENTS

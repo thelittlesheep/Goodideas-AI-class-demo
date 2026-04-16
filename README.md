@@ -11,6 +11,8 @@ npm start
 
 伺服器在 `http://localhost:3000` 執行。
 
+開啟瀏覽器前往 `http://localhost:3000/` 可使用 **API Explorer** 互動介面（分頁式瀏覽 Users／Memberships、填欄位即時發送請求）。
+
 ## API 端點
 
 | 方法 | 路徑 | 說明 |
@@ -74,7 +76,9 @@ curl -s -X DELETE http://localhost:3000/users/1 -w "%{http_code}\n"
 npm test
 ```
 
-## Claude Code Custom Commands
+## Claude Code Skills
+
+存放於 `.claude/skills/<name>/SKILL.md`，每個 skill 皆附 `evals/verify.sh` 驗證腳本。
 
 | 指令 | 說明 | 範例 |
 |------|------|------|
@@ -84,3 +88,9 @@ npm test
 | `/debug-test` | 結構化診斷並修復失敗測試 | `/debug-test GET /users 分頁測試失敗` |
 | `/add-model` | 新增完整資料模型 | `/add-model Membership — userId, plan, status` |
 | `/bootstrap-repo` | 掃描整個 repo 產生概覽 | `/bootstrap-repo` |
+
+執行單一 skill 的驗證：
+
+```bash
+bash .claude/skills/<skill-name>/evals/verify.sh
+```

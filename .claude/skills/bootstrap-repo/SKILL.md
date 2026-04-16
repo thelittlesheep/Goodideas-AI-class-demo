@@ -1,3 +1,9 @@
+---
+name: bootstrap-repo
+description: >
+  Scan this entire repo and produce a concise overview.
+---
+
 Scan this entire repo and produce a concise overview.
 
 Use multiple subagents in parallel to analyze:
@@ -16,3 +22,5 @@ After all agents finish, synthesize a single summary:
 - Suggested first steps for a new contributor
 
 Keep the summary under 300 words.
+
+After generating the summary, save it to a temporary file and run `bash .claude/skills/bootstrap-repo/evals/verify.sh <output-file>` to confirm all constraints are met.

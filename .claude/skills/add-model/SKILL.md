@@ -1,3 +1,9 @@
+---
+name: add-model
+description: >
+  Scaffold a complete new in-memory data model with CRUD routes and tests for this Express Users API.
+---
+
 Scaffold a complete new in-memory data model with CRUD routes and tests for this Express Users API.
 
 Context:
@@ -17,5 +23,6 @@ Steps:
 7. IMPLEMENT routes in src/app.js — require the new data file, add 5 standard routes (GET list, GET by id, POST, PUT, DELETE) following existing conventions
 8. IMPLEMENT test/<resource>.test.js — one describe per HTTP method, beforeEach(() => resetData()), cover success + 404/400 cases
 9. VERIFY: Run npm test — all tests (existing + new) must pass
+10. VALIDATE: Run `bash .claude/skills/add-model/evals/verify.sh <resource>` (replace `<resource>` with the singular resource name) to confirm all constraints are met
 
 Resource to add: $ARGUMENTS

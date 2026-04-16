@@ -37,13 +37,14 @@
 - ID 參數轉換用 Number()（不用 parseInt）
 - 測試間用 resetData() 重置資料以確保隔離
 
-## Custom Commands
+## Skills
 - /add-endpoint <描述> — 新增 API 端點（含測試）
 - /validate-input <路由> — 為路由加上 input validation
 - /bootstrap-repo — 掃描整個 repo 產生概覽
 - /add-filter <路由 + 欄位> — 為列表端點加上查詢參數過濾
 - /debug-test <失敗測試描述> — 結構化診斷並修復失敗測試
 - /add-model <資源名稱 + 欄位> — 新增完整資料模型（資料層 + 路由 + 測試）
+- 每個 skill 皆附帶 `evals/verify.sh` 驗證腳本
 
 ## 已知地雷
 - data.js 是記憶體儲存，重啟後資料會消失

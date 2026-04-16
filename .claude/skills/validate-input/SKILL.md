@@ -1,3 +1,9 @@
+---
+name: validate-input
+description: >
+  Add input validation to a route in this Express Users API.
+---
+
 Add input validation to a route in this Express Users API.
 
 Context:
@@ -12,5 +18,6 @@ Steps:
 3. IMPLEMENT validation at the top of the route handler — fail fast before calling data helpers
 4. TEST: Add test cases in test/users.test.js for each validation rule (missing field → 400, invalid email → 400, invalid role → 400)
 5. VERIFY: Run npm test — all tests must pass
+6. VALIDATE: Run `bash .claude/skills/validate-input/evals/verify.sh` to confirm all constraints are met
 
 Route to validate: $ARGUMENTS

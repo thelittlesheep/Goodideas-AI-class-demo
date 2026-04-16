@@ -1,3 +1,9 @@
+---
+name: debug-test
+description: >
+  Diagnose and fix a failing test in this Express Users API using a structured debugging workflow.
+---
+
 Diagnose and fix a failing test in this Express Users API using a structured debugging workflow.
 
 Context:
@@ -14,5 +20,6 @@ Steps:
 5. PROPOSE the fix with reasoning. WAIT for my approval before writing code
 6. IMPLEMENT the minimal fix — only change the file that contains the bug, do not refactor surrounding code
 7. VERIFY: Run npm test — ALL tests must pass (both the previously failing test and all others)
+8. VALIDATE: Run `bash .claude/skills/debug-test/evals/verify.sh` to confirm all constraints are met (0 failures, minimal fix)
 
 Failing test: $ARGUMENTS

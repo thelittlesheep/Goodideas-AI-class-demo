@@ -1,3 +1,9 @@
+---
+name: add-endpoint
+description: >
+  Add a new endpoint to this Express Users API following existing conventions.
+---
+
 Add a new endpoint to this Express Users API following existing conventions.
 
 Steps:
@@ -8,5 +14,6 @@ Steps:
 5. IMPLEMENT: Add the route to src/app.js following the existing pattern (getById for 404, Number() for id params, res.status().json() for errors)
 6. TEST: Add a describe block in test/users.test.js with beforeEach(() => resetData()) — cover success case + 404/400 cases
 7. VERIFY: Run npm test — all tests must pass
+8. VALIDATE: Run `bash .claude/skills/add-endpoint/evals/verify.sh` to confirm all constraints are met
 
 Endpoint to add: $ARGUMENTS

@@ -8,8 +8,11 @@ const {
   remove: removeMembership,
 } = require("./membership");
 
+const path = require("path");
+
 const app = express();
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "..", "public")));
 
 // GET /users — list users with optional pagination (?page=1&limit=10)
 app.get("/users", (req, res) => {
