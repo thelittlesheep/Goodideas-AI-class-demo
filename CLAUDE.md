@@ -51,3 +51,13 @@
 - POST /users 和 PUT /users/:id 沒有 input validation
 - test 直接 import app.js，不要啟動 server
 - supertest 放在 dependencies 而非 devDependencies
+
+## Week 4 Demo 素材
+- `.claude/settings.json` — 三層 hooks（PreToolUse 保護 / PostToolUse 格式化 / Stop 測試）
+- `.claude/agents/api-reader.md` — 只能 curl GET 的 Subagent（示範權限限制）
+- `.claude/agents/code-reviewer.md` — 帶 project memory 的 Subagent（示範知識累積）
+- `scripts/protect-files.sh` — 阻擋對 `.env*` 與 `migrations/*` 的寫入
+- `scripts/format-on-save.sh` — Write/Edit 後自動跑 prettier
+- `scripts/validate-readonly-api.sh` — api-reader 的 Bash 限制腳本
+- `prompts/workflow-interview.md` — Phase 3 Capstone 訪談 prompt
+- 修改 `.env*` 或 `migrations/*` 會被 PreToolUse 阻擋（demo 功能，不是 bug）
